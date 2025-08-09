@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
 
     // --- PENGATURAN NAVIGASI ---
@@ -6,9 +7,11 @@ document.addEventListener('DOMContentLoaded', function() {
     navButtons.forEach(button => {
         button.addEventListener('click', () => {
             const page = button.getAttribute('data-page');
+            // Sembunyikan semua section
             sections.forEach(section => section.classList.add('hidden'));
             const activeSection = document.getElementById(page);
             if (activeSection) activeSection.classList.remove('hidden');
+            // Atur style tombol aktif
             navButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
         });
@@ -90,52 +93,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // --- LOGIKA SLIDER JINGLE ---
-    const jingleSlider = document.getElementById('jingle-slider');
-    if (jingleSlider) {
-        const track = jingleSlider.querySelector('.jingle-slider-track');
-        const slides = Array.from(track.children);
-        const nextButton = document.getElementById('next-jingle');
-        const prevButton = document.getElementById('prev-jingle');
-        const slideWidth = slides[0].getBoundingClientRect().width;
-        let currentIndex = 0;
+    // --- LOGIKA JINGLE & VIDEO (AGAR TIDAK TABRAKAN) ---
+    // Mengambil semua elemen video di halaman
+    const allVideos = document.querySelectorAll('video');
 
-        // Fungsi untuk memindahkan slide
-        const moveToSlide = (targetIndex) => {
-            // Hentikan semua video sebelum pindah
-            track.querySelectorAll('video').forEach(video => video.pause());
-            
-            track.style.transform = 'translateX(-' + slideWidth * targetIndex + 'px)';
-            currentIndex = targetIndex;
-        };
+    allVideos.forEach(video => {
+        // Menambahkan event listener 'play' ke setiap video
+        video.addEventListener('play', (event) => {
+            // Video yang sedang diputar saat ini
+            const currentVideo = event.target;
 
-        // Atur posisi awal
-        slides.forEach((slide, index) => {
-            slide.style.left = slideWidth * index + 'px';
+            // Loop melalui semua video lagi
+            allVideos.forEach(otherVideo => {
+                // Jika video lain itu BUKAN video yang sedang diputar, dan video itu TIDAK sedang dijeda
+                if (otherVideo !== currentVideo && !otherVideo.paused) {
+                    // Jeda video lain tersebut
+                    otherVideo.pause();
+                }
+            });
         });
-
-        // Tombol Next
-        nextButton.addEventListener('click', () => {
-            const nextIndex = (currentIndex + 1) % slides.length;
-            moveToSlide(nextIndex);
-        });
-
-        // Tombol Prev
-        prevButton.addEventListener('click', () => {
-            const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
-            moveToSlide(prevIndex);
-        });
-
-        // Responsif: Atur ulang lebar slide saat ukuran jendela berubah
-        window.addEventListener('resize', () => {
-            const newSlideWidth = slides[0].getBoundingClientRect().width;
-            track.style.transition = 'none'; // nonaktifkan transisi sementara
-            track.style.transform = 'translateX(-' + newSlideWidth * currentIndex + 'px)';
-            setTimeout(() => {
-                track.style.transition = 'transform 0.5s ease-in-out'; // aktifkan kembali
-            }, 10);
-        });
-    }
+    });
 
 
     // --- INISIALISASI SEMUA FUNGSI ---
