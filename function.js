@@ -1,10 +1,8 @@
-// Menunggu hingga seluruh konten HTML dimuat sebelum menjalankan skrip
 document.addEventListener('DOMContentLoaded', function() {
 
     // --- PENGATURAN NAVIGASI ---
     const navButtons = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('main section');
-
     navButtons.forEach(button => {
         button.addEventListener('click', () => {
             const page = button.getAttribute('data-page');
@@ -38,10 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
             comments.forEach(comment => {
                 const commentElement = document.createElement('div');
                 commentElement.className = 'bg-white p-4 rounded-lg shadow-sm border border-gray-200';
-                // Menampilkan komentar tanpa nama, diganti dengan teks generik
                 commentElement.innerHTML = `
                     <p class="font-bold text-sky-700">Sobat Anak Berkata:</p>
-                    <p class="text-gray-600">${comment.komentar}</p>
+                    <p class="text-gray-600 break-words">${comment.komentar}</p>
                     <p class="text-xs text-gray-400 mt-2">${new Date(comment.tanggal).toLocaleString('id-ID')}</p>
                 `;
                 commentList.prepend(commentElement);
@@ -52,7 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (commentForm) {
         commentForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            // Membuat objek komentar baru tanpa properti 'nama'
             const newComment = {
                 komentar: komentarInput.value,
                 tanggal: new Date().toISOString()
@@ -69,18 +65,15 @@ document.addEventListener('DOMContentLoaded', function() {
     async function loadNews() {
         const newsContainer = document.getElementById('news-container');
         if (!newsContainer) return;
-
         try {
             const response = await fetch('berita.json');
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const newsData = await response.json();
-
             newsContainer.innerHTML = '';
             if (newsData.length === 0) {
-                 newsContainer.innerHTML = '<p class="text-gray-500">Saat ini belum ada berita terbaru.</p>';
-                 return;
+                newsContainer.innerHTML = '<p class="text-gray-500">Saat ini belum ada berita terbaru.</p>';
+                return;
             }
-
             newsData.forEach(item => {
                 const article = document.createElement('article');
                 article.className = 'bg-white p-5 rounded-lg shadow-sm border border-gray-200';
@@ -96,8 +89,56 @@ document.addEventListener('DOMContentLoaded', function() {
             newsContainer.innerHTML = '<p class="text-red-500">Maaf, terjadi kesalahan saat memuat berita.</p>';
         }
     }
+    
+    // --- LOGIKA SLIDER JINGLE ---
+    const jingleSlider = document.getElementById('jingle-slider');
+    if (jingleSlider) {
+        const track = jingleSlider.querySelector('.jingle-slider-track');
+        const slides = Array.from(track.children);
+        const nextButton = document.getElementById('next-jingle');
+        const prevButton = document.getElementById('prev-jingle');
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        let currentIndex = 0;
 
-    // --- INISIALISASI FUNGSI ---
+        // Fungsi untuk memindahkan slide
+        const moveToSlide = (targetIndex) => {
+            // Hentikan semua video sebelum pindah
+            track.querySelectorAll('video').forEach(video => video.pause());
+            
+            track.style.transform = 'translateX(-' + slideWidth * targetIndex + 'px)';
+            currentIndex = targetIndex;
+        };
+
+        // Atur posisi awal
+        slides.forEach((slide, index) => {
+            slide.style.left = slideWidth * index + 'px';
+        });
+
+        // Tombol Next
+        nextButton.addEventListener('click', () => {
+            const nextIndex = (currentIndex + 1) % slides.length;
+            moveToSlide(nextIndex);
+        });
+
+        // Tombol Prev
+        prevButton.addEventListener('click', () => {
+            const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+            moveToSlide(prevIndex);
+        });
+
+        // Responsif: Atur ulang lebar slide saat ukuran jendela berubah
+        window.addEventListener('resize', () => {
+            const newSlideWidth = slides[0].getBoundingClientRect().width;
+            track.style.transition = 'none'; // nonaktifkan transisi sementara
+            track.style.transform = 'translateX(-' + newSlideWidth * currentIndex + 'px)';
+            setTimeout(() => {
+                track.style.transition = 'transform 0.5s ease-in-out'; // aktifkan kembali
+            }, 10);
+        });
+    }
+
+
+    // --- INISIALISASI SEMUA FUNGSI ---
     updateVisitorCount();
     loadComments();
     loadNews();
