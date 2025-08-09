@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum Anak Nasional - Kecamatan Sawangan</title>
+    <!-- Tailwind CSS untuk styling responsif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Baloo 2 (Ceria) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap" rel="stylesheet">
+    <!-- File JavaScript kustom -->
+    <script src="function.js" defer></script>
+    <style>
+        body {
+            font-family: 'Baloo 2', cursive;
+            background-color: #87CEEB; /* Warna langit biru */
+            background-image:
+                radial-gradient(circle at 15% 50%, white 8%, transparent 8.5%),
+                radial-gradient(circle at 85% 30%, white 10%, transparent 10.5%),
+                radial-gradient(circle at 45% 80%, white 12%, transparent 12.5%);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+        }
+        .active-section { display: block; }
+        .nav-link { @apply px-4 py-2 text-lg font-semibold text-sky-800 hover:bg-sky-200 rounded-lg transition-colors duration-300; }
+        .nav-link.active { @apply bg-white text-sky-900 shadow-md; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 max-w-4xl">
+
+        <!-- Header dengan Logo -->
+        <header class="relative rounded-2xl shadow-xl overflow-hidden mb-6 bg-white/50 backdrop-blur-sm">
+             <div class="relative z-10 flex flex-col items-center p-6 text-center">
+                <img src="https://files.catbox.moe/j0lfaw.png" alt="Logo Forum Anak Nasional" class="h-24 md:h-32 mb-4">
+                <h1 class="text-3xl md:text-4xl font-bold text-sky-900">Forum Anak Kecamatan Sawangan</h1>
+                <p class="text-sky-800 font-semibold">Menjembatani Suara Anak Indonesia</p>
+            </div>
+        </header>
+
+        <!-- Navigasi -->
+        <nav class="bg-white/70 backdrop-blur-md p-2 rounded-xl shadow-lg mb-8 flex justify-center space-x-2 md:space-x-4">
+            <button data-page="beranda" class="nav-link active">Beranda</button>
+            <button data-page="ulasan" class="nav-link">Ulasan</button>
+            <button data-page="berita" class="nav-link">Berita & Jingle</button>
+        </nav>
+
+        <main>
+            <!-- Section Beranda (Profil Organisasi) -->
+            <section id="beranda" class="p-6 bg-white/80 backdrop-blur-md rounded-2xl shadow-lg active-section">
+                <h2 class="text-2xl font-bold text-sky-900 mb-4">Profil Organisasi</h2>
+                <p class="mb-4">
+                    <strong>Forum Anak Nasional (FAN)</strong> adalah organisasi anak yang dibina oleh Pemerintah Republik Indonesia melalui <strong>Kementerian Pemberdayaan Perempuan dan Perlindungan Anak</strong>. Tujuannya adalah untuk menjembatani komunikasi dan interaksi antara pemerintah dengan anak-anak di seluruh Indonesia dalam rangka pemenuhan hak partisipasi anak.
+                </p>
+                <div class="bg-sky-100 p-4 rounded-lg border border-sky-200">
+                    <h3 class="text-xl font-bold text-sky-800 mb-2">Biodata</h3>
+                    <ul class="space-y-2">
+                        <li><strong>Nama:</strong> Forum Anak Kecamatan Sawangan</li>
+                        <li><strong>Lokasi:</strong> Jl. Raya Muchtar No. 91, Sawangan, Kota Depok</li>
+                        <li><strong>Anggota:</strong> Forum Anak Kecamatan Sawangan</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section Ulasan (Komentar Anonim) -->
+            <section id="ulasan" class="p-6 bg-white/80 backdrop-blur-md rounded-2xl shadow-lg hidden">
+                <h2 class="text-2xl font-bold text-sky-900 mb-4">Ulasan & Buku Tamu</h2>
+                <div class="text-center mb-6 bg-sky-100 p-3 rounded-lg">
+                    <p class="font-semibold">Total Pengunjung Website: <span id="visitor-count" class="font-bold text-2xl text-sky-700">0</span></p>
+                </div>
+
+                <div class="mb-8">
+                    <form id="comment-form" class="bg-sky-50 p-4 rounded-lg space-y-4">
+                        <h3 class="font-bold text-lg text-sky-800">Bagikan Pendapatmu! (Anonim)</h3>
+                        <div>
+                            <label for="komentar" class="block mb-1 font-semibold">Komentar:</label>
+                            <textarea id="komentar" rows="4" required class="w-full p-2 rounded-md border border-sky-200 focus:ring-2 focus:ring-sky-400 focus:outline-none"></textarea>
+                        </div>
+                        <button type="submit" class="bg-sky-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-sky-600 transition-colors duration-300">Kirim</button>
+                    </form>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold text-sky-800 mb-4">Daftar Komentar</h3>
+                    <div id="comment-list" class="space-y-4">
+                        <!-- Komentar akan dimuat di sini oleh JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Berita (Video Jingle + Berita JSON) -->
+            <section id="berita" class="p-6 bg-white/80 backdrop-blur-md rounded-2xl shadow-lg hidden">
+                <h2 class="text-2xl font-bold text-sky-900 mb-4">Jingle Ceria Forum Anak</h2>
+                <div class="mb-8">
+                    <video controls class="w-full rounded-lg shadow-lg">
+                        <source src="https://files.catbox.moe/4fs6dn.mp4" type="video/mp4">
+                        Browser Anda tidak mendukung tag video.
+                    </video>
+                </div>
+
+                <hr class="my-6 border-sky-200">
+
+                <h2 class="text-2xl font-bold text-sky-900 mb-4">Arsip Berita</h2>
+                <div id="news-container" class="space-y-6">
+                    <!-- Berita dari JSON akan dimuat di sini -->
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-8 text-white font-semibold">
+            <p>&copy; 2025 Forum Anak Nasional - Kecamatan Sawangan. Dibuat dengan ❤️</p>
+        </footer>
+    </div>
+</body>
+</html>
