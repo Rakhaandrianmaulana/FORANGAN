@@ -1,44 +1,28 @@
-// Mengimpor aset dan fungsi database dari file eksternal
 import { siteAssets } from './assets.js';
 import { getComments, saveComment } from './database.js';
 
-// Fungsi utama yang akan dijalankan setelah seluruh halaman dimuat
 function main() {
-    /**
-     * Memuat semua aset media dari assets.js ke elemen HTML.
-     */
     function loadAllAssets() {
-        // Atur gambar latar belakang
         document.body.style.backgroundImage = `url('${siteAssets.backgroundCloud1}'), url('${siteAssets.backgroundCloud2}')`;
         document.body.style.backgroundPosition = 'top -10% left -10%, bottom -10% right -10%';
         document.body.style.backgroundRepeat = 'no-repeat';
         document.body.style.backgroundSize = '50%, 50%';
 
-        // Muat semua aset gambar dan video
         const assetElements = document.querySelectorAll('[data-asset]');
         assetElements.forEach(el => {
             const assetKey = el.dataset.asset;
             if (siteAssets[assetKey]) {
                 el.src = siteAssets[assetKey];
-
-                // === PERBAIKAN KRITIS UNTUK VIDEO ===
-                // Jika elemen adalah <source>, paksa elemen <video> induknya
-                // untuk memuat ulang sumber media yang baru.
                 if (el.tagName === 'SOURCE') {
                     const videoElement = el.parentElement;
                     if (videoElement && typeof videoElement.load === 'function') {
                         videoElement.load();
                     }
                 }
-            } else {
-                console.warn(`Aset dengan kunci "${assetKey}" tidak ditemukan di assets.js`);
             }
         });
     }
 
-    /**
-     * Mengatur navigasi antar halaman/section.
-     */
     function setupNavigation() {
         const navButtons = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('main section');
@@ -46,27 +30,21 @@ function main() {
         navButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const pageId = button.dataset.page;
-                
                 sections.forEach(section => {
                     section.classList.remove('active-section');
                     section.classList.add('hidden-section');
                 });
-                
                 const targetSection = document.getElementById(pageId);
                 if (targetSection) {
                     targetSection.classList.remove('hidden-section');
                     targetSection.classList.add('active-section');
                 }
-                
                 navButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
             });
         });
     }
 
-    /**
-     * Memperbarui dan menampilkan jumlah pengunjung.
-     */
     function updateVisitorCount() {
         let count = localStorage.getItem('visitorCount') ? parseInt(localStorage.getItem('visitorCount')) + 1 : 1;
         localStorage.setItem('visitorCount', count);
@@ -74,9 +52,6 @@ function main() {
         if (visitorCountElement) visitorCountElement.textContent = count;
     }
 
-    /**
-     * Mengatur fungsionalitas halaman ulasan.
-     */
     function setupCommentSection() {
         const commentForm = document.getElementById('comment-form');
         const commentList = document.getElementById('comment-list');
@@ -87,18 +62,38 @@ function main() {
             commentList.innerHTML = '';
             if (comments.length === 0) {
                 commentList.innerHTML = '<p class="text-gray-500">Belum ada komentar. Jadilah yang pertama!</p>';
-            } else {
-                comments.reverse().forEach(comment => {
-                    const commentElement = document.createElement('div');
-                    commentElement.className = 'bg-white p-4 rounded-lg shadow-sm border border-gray-200';
-                    commentElement.innerHTML = `
-                        <p class="font-bold text-sky-700">Sobat Anak Berkata:</p>
-                        <p class="text-gray-600 break-words">${comment.komentar}</p>
-                        <p class="text-xs text-gray-400 mt-2">${new Date(comment.tanggal).toLocaleString('id-ID')}</p>
-                    `;
-                    commentList.appendChild(commentElement);
-                });
+                return;
             }
+            
+            comments.reverse().forEach(comment => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'bg-white p-4 rounded-lg shadow-sm border border-gray-200';
+
+                let userCommentHTML = `
+                    <div>
+                        <p class="font-bold text-sky-700">Sobat Anak Berkata:</p>
+                        <p class="text-gray-600 break-words italic">"${comment.komentar}"</p>
+                        <p class="text-xs text-gray-400 mt-2">${new Date(comment.tanggal).toLocaleString('id-ID')}</p>
+                    </div>
+                `;
+
+                let adminReplyHTML = '';
+                if (comment.balasan) {
+                    adminReplyHTML = `
+                        <div class="mt-4 pt-4 border-t border-sky-100 ml-4">
+                            <div class="flex items-center gap-2">
+                                <p class="font-bold text-green-600">FORANGAN</p>
+                                <svg class="w-5 h-5 text-sky-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <p class="text-gray-800 break-words">${comment.balasan.teks}</p>
+                            <p class="text-xs text-gray-400 mt-2">${new Date(comment.balasan.tanggal).toLocaleString('id-ID')}</p>
+                        </div>
+                    `;
+                }
+                
+                wrapper.innerHTML = userCommentHTML + adminReplyHTML;
+                commentList.appendChild(wrapper);
+            });
         }
 
         if (commentForm) {
@@ -115,23 +110,17 @@ function main() {
         displayComments();
     }
     
-    /**
-     * Mengatur logika modal (pop-up) untuk berita.
-     */
     function setupNewsModal() {
         const modal = document.getElementById('news-modal');
         if (!modal) return;
-        
         const modalTitle = document.getElementById('modal-title');
         const modalBody = document.getElementById('modal-body');
         const closeModalBtn = document.getElementById('close-modal-btn');
-
         window.openModal = (title, content) => {
             modalTitle.textContent = title;
             modalBody.textContent = content;
             modal.classList.remove('hidden');
         };
-
         const closeModal = () => modal.classList.add('hidden');
         closeModalBtn.addEventListener('click', closeModal);
         modal.addEventListener('click', (e) => {
@@ -139,9 +128,6 @@ function main() {
         });
     }
 
-    /**
-     * Memuat berita dari berita.json dengan sistem "Baca Selengkapnya".
-     */
     async function loadNews() {
         const newsContainer = document.getElementById('news-container');
         if (!newsContainer) return;
@@ -159,14 +145,12 @@ function main() {
                 article.className = 'bg-white p-5 rounded-lg shadow-sm border border-gray-200';
                 const snippet = item.isi.length > 150 ? item.isi.substring(0, 150) + '...' : item.isi;
                 const readMoreButton = item.isi.length > 150 ? `<button class="text-sky-600 font-bold hover:underline mt-2 inline-block">Baca Selengkapnya...</button>` : '';
-                
                 article.innerHTML = `
                     <h3 class="text-xl font-bold text-sky-800 mb-2">${item.judul}</h3>
                     <p class="text-sm text-gray-500 mb-3">Dipublikasikan pada: ${new Date(item.tanggal).toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
                     <p class="text-gray-700">${snippet}</p>
                     ${readMoreButton}
                 `;
-                
                 if (readMoreButton) {
                     article.querySelector('button').addEventListener('click', () => window.openModal(item.judul, item.isi));
                 }
@@ -178,9 +162,6 @@ function main() {
         }
     }
     
-    /**
-     * Memuat informasi hukum dari hukum.json.
-     */
     async function loadHukum() {
         const hukumContainer = document.getElementById('hukum-container');
         if (!hukumContainer) return;
@@ -218,9 +199,6 @@ function main() {
         }
     }
 
-    /**
-     * Memastikan hanya satu video yang bisa diputar dalam satu waktu.
-     */
     function setupVideoPlayerLogic() {
         const allVideos = document.querySelectorAll('video');
         allVideos.forEach(video => {
@@ -234,7 +212,6 @@ function main() {
         });
     }
 
-    // --- INISIALISASI SEMUA FUNGSI ---
     loadAllAssets();
     setupNavigation();
     updateVisitorCount();
@@ -245,5 +222,4 @@ function main() {
     setupVideoPlayerLogic();
 }
 
-// Menjalankan fungsi utama setelah halaman siap
 document.addEventListener('DOMContentLoaded', main);
