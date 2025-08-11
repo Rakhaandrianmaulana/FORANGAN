@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- PERUBAHAN PENTING: Memuat function.js sebagai 'module' -->
     <script type="module" src="function.js" defer></script>
     <style>
         body { font-family: 'Baloo 2', cursive; background-color: #87CEEB; min-height: 100vh; background-attachment: fixed; }
@@ -79,9 +80,7 @@
         </footer>
     </div>
     
-    <div id="news-modal" class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden">
-        <div id="news-modal-content" class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 relative"><button id="close-modal-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button><h2 id="modal-title" class="text-2xl md:text-3xl font-bold text-gray-800 mb-4"></h2><p id="modal-body" class="text-gray-700 leading-relaxed whitespace-pre-wrap"></p></div>
-    </div>
+    <div id="news-modal" class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden"><div id="news-modal-content" class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 relative"><button id="close-modal-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button><h2 id="modal-title" class="text-2xl md:text-3xl font-bold text-gray-800 mb-4"></h2><p id="modal-body" class="text-gray-700 leading-relaxed whitespace-pre-wrap"></p></div></div>
 
     <!-- === KODE AI YANG DIPERBAIKI DAN DITAMBAHKAN KEMBALI === -->
     <button id="open-ai-chat-btn" class="fixed bottom-6 right-6 bg-sky-600 text-white p-4 rounded-full shadow-lg hover:bg-sky-700 transition-transform hover:scale-110 focus:outline-none z-40">
