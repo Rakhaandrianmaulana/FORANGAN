@@ -8,16 +8,28 @@ function main() {
      * Memuat semua aset media dari assets.js ke elemen HTML.
      */
     function loadAllAssets() {
+        // Atur gambar latar belakang
         document.body.style.backgroundImage = `url('${siteAssets.backgroundCloud1}'), url('${siteAssets.backgroundCloud2}')`;
         document.body.style.backgroundPosition = 'top -10% left -10%, bottom -10% right -10%';
         document.body.style.backgroundRepeat = 'no-repeat';
         document.body.style.backgroundSize = '50%, 50%';
 
+        // Muat semua aset gambar dan video
         const assetElements = document.querySelectorAll('[data-asset]');
         assetElements.forEach(el => {
             const assetKey = el.dataset.asset;
             if (siteAssets[assetKey]) {
                 el.src = siteAssets[assetKey];
+
+                // === PERBAIKAN KRITIS UNTUK VIDEO ===
+                // Jika elemen adalah <source>, paksa elemen <video> induknya
+                // untuk memuat ulang sumber media yang baru.
+                if (el.tagName === 'SOURCE') {
+                    const videoElement = el.parentElement;
+                    if (videoElement && typeof videoElement.load === 'function') {
+                        videoElement.load();
+                    }
+                }
             } else {
                 console.warn(`Aset dengan kunci "${assetKey}" tidak ditemukan di assets.js`);
             }
@@ -35,20 +47,17 @@ function main() {
             button.addEventListener('click', () => {
                 const pageId = button.dataset.page;
                 
-                // Sembunyikan semua section
                 sections.forEach(section => {
                     section.classList.remove('active-section');
                     section.classList.add('hidden-section');
                 });
                 
-                // Tampilkan section yang dipilih
                 const targetSection = document.getElementById(pageId);
                 if (targetSection) {
                     targetSection.classList.remove('hidden-section');
                     targetSection.classList.add('active-section');
                 }
                 
-                // Atur style tombol aktif
                 navButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
             });
@@ -74,12 +83,12 @@ function main() {
         const komentarInput = document.getElementById('komentar');
 
         function displayComments() {
-            const comments = getComments(); // Memanggil fungsi dari database.js
+            const comments = getComments();
             commentList.innerHTML = '';
             if (comments.length === 0) {
                 commentList.innerHTML = '<p class="text-gray-500">Belum ada komentar. Jadilah yang pertama!</p>';
             } else {
-                comments.reverse().forEach(comment => { // Tampilkan terbaru di atas
+                comments.reverse().forEach(comment => {
                     const commentElement = document.createElement('div');
                     commentElement.className = 'bg-white p-4 rounded-lg shadow-sm border border-gray-200';
                     commentElement.innerHTML = `
@@ -96,14 +105,14 @@ function main() {
             commentForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 if (komentarInput.value.trim()) {
-                    saveComment(komentarInput.value); // Memanggil fungsi dari database.js
-                    displayComments(); // Perbarui tampilan
+                    saveComment(komentarInput.value);
+                    displayComments();
                     commentForm.reset();
                 }
             });
         }
         
-        displayComments(); // Tampilkan komentar saat halaman dimuat
+        displayComments();
     }
     
     /**
@@ -138,7 +147,7 @@ function main() {
         if (!newsContainer) return;
         try {
             const response = await fetch('berita.json');
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            if (!response.ok) throw new Error(`Fetch error! status: ${response.status}`);
             const newsData = await response.json();
             newsContainer.innerHTML = '';
             if (newsData.length === 0) {
@@ -177,7 +186,7 @@ function main() {
         if (!hukumContainer) return;
         try {
             const response = await fetch('hukum.json');
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            if (!response.ok) throw new Error(`Fetch error! status: ${response.status}`);
             const hukumData = await response.json();
             hukumContainer.innerHTML = '';
             hukumData.forEach(kategori => {
