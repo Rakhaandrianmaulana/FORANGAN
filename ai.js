@@ -1,16 +1,13 @@
 /**
  * AI FORANGAN - LOGIKA UTAMA
- * File ini mengelola semua interaksi dengan Gemini API.
+ * Versi ini telah dioptimalkan dengan penanganan error yang lebih baik.
  */
 
-// --- KONFIGURASI PENTING ---
-const API_KEY = 'AIzaSyAxZqnLwUFTlU5nfpwNlkGiFHXzEWo0jb4'; // API Key Anda
+const API_KEY = 'AIzaSyAxZqnLwUFTlU5nfpwNlkGiFHXzEWo0jb4'; // PERINGATAN: Menyimpan API Key di sisi klien tidak aman untuk produksi.
 
-// PERUBAHAN: Menggunakan model gemini-2.0-flash
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`.replace('gemini-pro', 'gemini-1.5-flash-latest');
+// Menggunakan model gemini-1.5-flash-latest yang stabil dan cepat.
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
 
-
-// Prompt sistem untuk membentuk kepribadian AI
 const SYSTEM_PROMPT = {
     role: "user",
     parts: [{ 
@@ -27,15 +24,7 @@ const INITIAL_AI_GREETING = {
 
 let chatHistory = [SYSTEM_PROMPT, INITIAL_AI_GREETING];
 
-// --- FUNGSI UTAMA ---
-
-/**
- * Mengirim pesan ke Gemini API dan mengembalikan responsnya.
- * @param {string} userMessage - Pesan dari pengguna.
- * @returns {Promise<string>} Teks balasan dari AI.
- */
 async function getAIResponse(userMessage) {
-    // Tambahkan pesan pengguna ke riwayat
     chatHistory.push({ role: "user", parts: [{ text: userMessage }] });
 
     try {
@@ -53,28 +42,22 @@ async function getAIResponse(userMessage) {
 
         const data = await response.json();
         
-        if (!data.candidates || data.candidates.length === 0) {
+        if (!data.candidates || data.candidates.length === 0 || !data.candidates[0].content) {
+             console.error("Invalid API response structure:", data);
              throw new Error("API tidak memberikan balasan yang valid.");
         }
         
         const aiText = data.candidates[0].content.parts[0].text;
-
-        // Tambahkan respons AI ke riwayat
         chatHistory.push({ role: "model", parts: [{ text: aiText }] });
-        
         return aiText;
 
     } catch (error) {
         console.error("Error saat menghubungi Gemini API:", error);
-        // Reset riwayat chat jika terjadi error agar tidak macet
-        chatHistory = [SYSTEM_PROMPT, INITIAL_AI_GREETING];
-        return "Aduh, sepertinya ada sedikit gangguan di jaringanku. Coba segarkan halaman dan tanya lagi ya!";
+        chatHistory.pop(); // Hapus pesan pengguna yang gagal dari riwayat
+        return "Aduh, sepertinya ada sedikit gangguan di jaringanku. Coba tanya lagi beberapa saat lagi ya!";
     }
 }
 
-/**
- * Inisialisasi semua elemen dan event listener untuk fitur AI.
- */
 export function initializeAI() {
     const openBtn = document.getElementById('open-ai-chat-btn');
     const chatWindow = document.getElementById('ai-chat-window');
@@ -83,7 +66,10 @@ export function initializeAI() {
     const chatInput = document.getElementById('ai-chat-input');
     const chatbox = document.getElementById('ai-chatbox');
 
-    if (!openBtn || !chatWindow || !closeBtn || !chatForm) return;
+    if (!openBtn || !chatWindow || !closeBtn || !chatForm) {
+        console.error("Satu atau lebih elemen AI tidak ditemukan di DOM. Pastikan HTML sudah benar.");
+        return;
+    }
 
     openBtn.addEventListener('click', () => chatWindow.classList.remove('hidden'));
     closeBtn.addEventListener('click', () => chatWindow.classList.add('hidden'));
@@ -111,6 +97,7 @@ export function initializeAI() {
         chatInput.disabled = true;
 
         const typingIndicator = document.createElement('div');
+        typingIndicator.id = 'typing-indicator';
         typingIndicator.className = 'self-start';
         typingIndicator.innerHTML = `<div class="bg-gray-200 text-gray-500 p-3 rounded-2xl">AI FORANGAN sedang mengetik...</div>`;
         chatbox.appendChild(typingIndicator);
@@ -118,7 +105,10 @@ export function initializeAI() {
 
         const aiResponse = await getAIResponse(userMessage);
         
-        chatbox.removeChild(typingIndicator);
+        const indicatorToRemove = document.getElementById('typing-indicator');
+        if (indicatorToRemove) {
+            chatbox.removeChild(indicatorToRemove);
+        }
         addMessageToUI(aiResponse, 'ai');
         chatInput.disabled = false;
         chatInput.focus();
