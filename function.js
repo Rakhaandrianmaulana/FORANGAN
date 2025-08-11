@@ -2,8 +2,8 @@
 import { siteAssets } from './assets.js';
 import { getComments, saveComment } from './database.js';
 
-document.addEventListener('DOMContentLoaded', function() {
-
+// Fungsi utama yang akan dijalankan setelah seluruh halaman dimuat
+function main() {
     /**
      * Memuat semua aset media dari assets.js ke elemen HTML.
      */
@@ -30,12 +30,25 @@ document.addEventListener('DOMContentLoaded', function() {
     function setupNavigation() {
         const navButtons = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('main section');
+        
         navButtons.forEach(button => {
             button.addEventListener('click', () => {
-                const page = button.getAttribute('data-page');
-                sections.forEach(section => section.classList.add('hidden'));
-                const activeSection = document.getElementById(page);
-                if (activeSection) activeSection.classList.remove('hidden');
+                const pageId = button.dataset.page;
+                
+                // Sembunyikan semua section
+                sections.forEach(section => {
+                    section.classList.remove('active-section');
+                    section.classList.add('hidden-section');
+                });
+                
+                // Tampilkan section yang dipilih
+                const targetSection = document.getElementById(pageId);
+                if (targetSection) {
+                    targetSection.classList.remove('hidden-section');
+                    targetSection.classList.add('active-section');
+                }
+                
+                // Atur style tombol aktif
                 navButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
             });
@@ -221,4 +234,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadNews();
     loadHukum();
     setupVideoPlayerLogic();
-});
+}
+
+// Menjalankan fungsi utama setelah halaman siap
+document.addEventListener('DOMContentLoaded', main);
