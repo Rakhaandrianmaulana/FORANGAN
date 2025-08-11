@@ -1,1 +1,30 @@
-U2FsdGVkX19LAwKAH/3aiKf6yKv4jyn0jhGMxKxthA4YHlcAFmaVAIPAY1uzfF6xV6c5pWIW425ffhGFeuepzqswJcSCXuzxvV1rkdePL3bHvaX87zX09CLnN4/myLDtNHvLMeoyEIUzw1oRReO1kGLiEnuh61+Nkll16MBojO8AoNoYC1h1aF0QNuiQjzcoma0gi8P7u0wUKx1UZODG+z27FkIp5e20c3NPruslMPMzHY0+wmvAyrpA9LElZDiy6qpp2FBIP9w1xDQE7wQGu4TeL4kb3V7mHEiKxvdzTfrKHpWcbpes5QkM56xyd2MTXfmxPReedBKSo7AzZCESE7zcWm2gDza0zbOXXYKLpAYucaJKRILH2+5MBiqoRVhPaY3LcKehepPwMFtUjf6E3+hK254W6ryemxnWP30HhWOEP0rgwhqbDjSAEitxFfYpFd/akJTKxR0Omt5mnFHW3Vo9UV4BT6EzBDOACFPHubNHQ9eips8IncAtqpWnCJMLoFeMfWkmYh+guOvw9PlloheDjrBC5iXO7A0dGogN77U0lwbWclMuNTAy4k8MDIPi3nHe+CT/v33gauJ1BYzpvOuTbOEgUmWgInHCdewW2KFP1Yyy0DBXoqBtDj3ao3/33AZACaC4ACeFAu5U9qeaKtQzh+zxqNtOEotEaLM7TrrP/Qf0MueLusmo0BJnG91q76jvv2sQAxpBz9QkJiZfRsnLBhX4BsUE/Ifjeeqjjcl1VLMcB0hD9umJpgmfM+SDzdMeE45GZGSmk1yaI82vRPJChHOmxZrPJWVvDaKlha3GYTnbPytjl/q7gja7XTnRD27JpohZsE89KPJv2iDJzYLQ+LMTd02aN0E0hu93iRVm8K/g0LNouRDb07UHudo9j+LnDaDQHAQIUP3NEFh7GGvnRxx1OZLcHbirgBmwQ31wFxgixypudbDApPOiiyr8s6tZA72vFYGJS9Wz1/5prxfOS/AG7ehamT9suKtWpOAGna+jcMjymHDkLSF3vEjMMNa0oz1E89aeGrNhNoEHdhfv/4UPH/4R5FrOPNY08lsvITwha74jdrcmM/H8r5RMyHpwrvnNDM+lS0mursNB/Kce+OyglmNn4/lWb1kaaTZV4zDIbXR39ZJoHlMviEelPbhpyERAd1z8/sv3lbgkLjrW9Mzz+0G0Q0v+0w7/e2s=
+/**
+ * PENGELOLA DATABASE ULASAN (LocalStorage)
+ * File ini bertanggung jawab untuk semua operasi terkait
+ * penyimpanan dan pengambilan data komentar.
+ */
+
+const COMMENTS_KEY = 'comments'; // Kunci untuk data di LocalStorage
+
+/**
+ * Mengambil semua komentar dari LocalStorage.
+ * @returns {Array} Array berisi objek komentar.
+ */
+export function getComments() {
+    const commentsJSON = localStorage.getItem(COMMENTS_KEY);
+    return commentsJSON ? JSON.parse(commentsJSON) : [];
+}
+
+/**
+ * Menyimpan komentar baru ke LocalStorage.
+ * @param {string} text - Isi komentar dari pengguna.
+ */
+export function saveComment(text) {
+    const allComments = getComments();
+    const newComment = {
+        komentar: text,
+        tanggal: new Date().toISOString()
+    };
+    allComments.push(newComment);
+    localStorage.setItem(COMMENTS_KEY, JSON.stringify(allComments));
+}
