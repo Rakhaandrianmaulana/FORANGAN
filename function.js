@@ -1,1 +1,149 @@
-const _0x69244c=_0x3985;(function(_0x1cf408,_0x33c3e0){const _0x142901=_0x3985,_0x3832ad=_0x1cf408();while(!![]){try{const _0x567b18=-parseInt(_0x142901(0x76))/0x1+parseInt(_0x142901(0xc6))/0x2+-parseInt(_0x142901(0x6e))/0x3+-parseInt(_0x142901(0x96))/0x4*(-parseInt(_0x142901(0xc9))/0x5)+-parseInt(_0x142901(0x8f))/0x6*(parseInt(_0x142901(0x7a))/0x7)+parseInt(_0x142901(0xcc))/0x8*(-parseInt(_0x142901(0x8b))/0x9)+parseInt(_0x142901(0x6c))/0xa;if(_0x567b18===_0x33c3e0)break;else _0x3832ad['push'](_0x3832ad['shift']());}catch(_0x5c4a96){_0x3832ad['push'](_0x3832ad['shift']());}}}(_0x10e3,0xeffb4));import{siteAssets}from'./assets.js';import{getComments,saveComment}from'./database.js';function main(){function _0x4334f7(){const _0xfe0d8b=_0x3985;document['body'][_0xfe0d8b(0xc8)][_0xfe0d8b(0x8e)]='url(\x27'+siteAssets[_0xfe0d8b(0x72)]+_0xfe0d8b(0x94)+siteAssets['backgroundCloud2']+'\x27)',document[_0xfe0d8b(0xa4)][_0xfe0d8b(0xc8)][_0xfe0d8b(0x80)]=_0xfe0d8b(0xae),document[_0xfe0d8b(0xa4)][_0xfe0d8b(0xc8)]['backgroundRepeat']=_0xfe0d8b(0xbc),document[_0xfe0d8b(0xa4)][_0xfe0d8b(0xc8)][_0xfe0d8b(0xb0)]=_0xfe0d8b(0xb5);const _0x394f01=document[_0xfe0d8b(0xad)](_0xfe0d8b(0xa0));_0x394f01['forEach'](_0x3db52e=>{const _0x44ed47=_0xfe0d8b,_0x4d935c=_0x3db52e['dataset'][_0x44ed47(0xb1)];if(siteAssets[_0x4d935c]){_0x3db52e[_0x44ed47(0x68)]=siteAssets[_0x4d935c];if(_0x3db52e[_0x44ed47(0x74)]===_0x44ed47(0x7d)){const _0x3ee063=_0x3db52e[_0x44ed47(0xbd)];_0x3ee063&&typeof _0x3ee063['load']===_0x44ed47(0xd2)&&_0x3ee063['load']();}}});}function _0x3a4f57(){const _0x3ce42f=_0x3985,_0x3eb990=document[_0x3ce42f(0xad)](_0x3ce42f(0xa7)),_0x3cb480=document[_0x3ce42f(0xad)]('main\x20section');_0x3eb990[_0x3ce42f(0x78)](_0x2704f1=>{const _0x9038bd=_0x3ce42f;_0x2704f1[_0x9038bd(0xbe)](_0x9038bd(0x8c),()=>{const _0x1fa334=_0x9038bd,_0x514dd2=_0x2704f1[_0x1fa334(0x7e)][_0x1fa334(0xab)];_0x3cb480[_0x1fa334(0x78)](_0x4425b3=>{const _0x34d1f1=_0x1fa334;_0x4425b3[_0x34d1f1(0xc2)][_0x34d1f1(0x6d)](_0x34d1f1(0x7f)),_0x4425b3[_0x34d1f1(0xc2)][_0x34d1f1(0x89)](_0x34d1f1(0x7c));});const _0x180f91=document[_0x1fa334(0xb6)](_0x514dd2);_0x180f91&&(_0x180f91[_0x1fa334(0xc2)][_0x1fa334(0x6d)]('hidden-section'),_0x180f91[_0x1fa334(0xc2)][_0x1fa334(0x89)](_0x1fa334(0x7f))),_0x3eb990[_0x1fa334(0x78)](_0x4a458d=>_0x4a458d[_0x1fa334(0xc2)][_0x1fa334(0x6d)]('active')),_0x2704f1[_0x1fa334(0xc2)]['add'](_0x1fa334(0xb4));});});}function _0xc3003b(){const _0x416e85=_0x3985;let _0xfaecea=localStorage[_0x416e85(0x9b)](_0x416e85(0x92))?parseInt(localStorage['getItem'](_0x416e85(0x92)))+0x1:0x1;localStorage[_0x416e85(0x86)](_0x416e85(0x92),_0xfaecea);const _0xc1012a=document[_0x416e85(0xb6)](_0x416e85(0x70));if(_0xc1012a)_0xc1012a[_0x416e85(0xa5)]=_0xfaecea;}function _0x58ba93(){const _0x413fa5=_0x3985,_0x1d5bf6=document[_0x413fa5(0xb6)](_0x413fa5(0x9c)),_0x8a8c74=document[_0x413fa5(0xb6)](_0x413fa5(0xc5)),_0x444a64=document['getElementById']('komentar');function _0x12294b(){const _0x2ff05c=_0x413fa5,_0x29ba28=getComments();_0x8a8c74[_0x2ff05c(0x83)]='';if(_0x29ba28[_0x2ff05c(0xc3)]===0x0){_0x8a8c74[_0x2ff05c(0x83)]=_0x2ff05c(0xd1);return;}_0x29ba28[_0x2ff05c(0xb7)]()[_0x2ff05c(0x78)](_0x283350=>{const _0x467895=_0x2ff05c,_0x507eb8=document[_0x467895(0x6f)](_0x467895(0x6a));_0x507eb8['className']='bg-white\x20p-4\x20rounded-lg\x20shadow-sm\x20border\x20border-gray-200';let _0xa5a86='\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22font-bold\x20text-sky-700\x22>Sobat\x20Anak\x20Berkata:</p>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-gray-600\x20break-words\x20italic\x22>\x22'+_0x283350[_0x467895(0xc0)]+'\x22</p>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-xs\x20text-gray-400\x20mt-2\x22>'+new Date(_0x283350[_0x467895(0xcd)])[_0x467895(0xc4)](_0x467895(0x87))+_0x467895(0xc1),_0x37c9ec='';_0x283350['balasan']&&(_0x37c9ec='\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22mt-4\x20pt-4\x20border-t\x20border-sky-100\x20ml-4\x22>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20items-center\x20gap-2\x22>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22font-bold\x20text-green-600\x22>FORANGAN</p>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20class=\x22w-5\x20h-5\x20text-sky-500\x22\x20fill=\x22currentColor\x22\x20viewBox=\x220\x200\x2020\x2020\x22\x20xmlns=\x22http://www.w3.org/2000/svg\x22><path\x20fill-rule=\x22evenodd\x22\x20d=\x22M10\x2018a8\x208\x200\x20100-16\x208\x208\x200\x20000\x2016zm3.707-9.293a1\x201\x200\x2000-1.414-1.414L9\x2010.586\x207.707\x209.293a1\x201\x200\x2000-1.414\x201.414l2\x202a1\x201\x200\x20001.414\x200l4-4z\x22\x20clip-rule=\x22evenodd\x22></path></svg>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-gray-800\x20break-words\x22>'+_0x283350[_0x467895(0xac)][_0x467895(0xaf)]+_0x467895(0xcf)+new Date(_0x283350['balasan'][_0x467895(0xcd)])[_0x467895(0xc4)](_0x467895(0x87))+_0x467895(0xa9)),_0x507eb8[_0x467895(0x83)]=_0xa5a86+_0x37c9ec,_0x8a8c74[_0x467895(0xba)](_0x507eb8);});}_0x1d5bf6&&_0x1d5bf6[_0x413fa5(0xbe)]('submit',function(_0x48dc47){const _0x272366=_0x413fa5;_0x48dc47[_0x272366(0x66)](),_0x444a64['value'][_0x272366(0x79)]()&&(saveComment(_0x444a64[_0x272366(0x81)]),_0x12294b(),_0x1d5bf6[_0x272366(0xce)]());}),_0x12294b();}function _0x2958f5(){const _0x2936cd=_0x3985,_0x443de8=document['getElementById'](_0x2936cd(0x93));if(!_0x443de8)return;const _0x30dc8d=document[_0x2936cd(0xb6)]('modal-title'),_0x3224a7=document[_0x2936cd(0xb6)](_0x2936cd(0x7b)),_0xb5da02=document[_0x2936cd(0xb6)]('close-modal-btn');window[_0x2936cd(0x82)]=(_0x42e7ab,_0x3bf61f)=>{const _0x448b7f=_0x2936cd;_0x30dc8d[_0x448b7f(0xa5)]=_0x42e7ab,_0x3224a7['textContent']=_0x3bf61f,_0x443de8['classList'][_0x448b7f(0x6d)](_0x448b7f(0x99));};const _0x21c8ee=()=>_0x443de8[_0x2936cd(0xc2)][_0x2936cd(0x89)](_0x2936cd(0x99));_0xb5da02[_0x2936cd(0xbe)]('click',_0x21c8ee),_0x443de8['addEventListener']('click',_0x5c1046=>{if(_0x5c1046['target']===_0x443de8)_0x21c8ee();});}async function _0x4e7a19(){const _0x1e0165=_0x3985,_0x1b0af4=document[_0x1e0165(0xb6)](_0x1e0165(0x88));if(!_0x1b0af4)return;try{const _0x237996=await fetch(_0x1e0165(0xd3));if(!_0x237996['ok'])throw new Error(_0x1e0165(0xa1)+_0x237996[_0x1e0165(0xca)]);const _0x204e8c=await _0x237996[_0x1e0165(0xa6)]();_0x1b0af4[_0x1e0165(0x83)]='';if(_0x204e8c[_0x1e0165(0xc3)]===0x0){_0x1b0af4[_0x1e0165(0x83)]=_0x1e0165(0xcb);return;}_0x204e8c[_0x1e0165(0x78)](_0x2128be=>{const _0x100514=_0x1e0165,_0x2d715b=document[_0x100514(0x6f)](_0x100514(0xaa));_0x2d715b['className']=_0x100514(0xb8);const _0x22e8b6=_0x2128be[_0x100514(0x71)][_0x100514(0xc3)]>0x96?_0x2128be[_0x100514(0x71)][_0x100514(0x85)](0x0,0x96)+_0x100514(0x90):_0x2128be[_0x100514(0x71)],_0x1a102d=_0x2128be[_0x100514(0x71)][_0x100514(0xc3)]>0x96?_0x100514(0x69):'';_0x2d715b[_0x100514(0x83)]='\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3\x20class=\x22text-xl\x20font-bold\x20text-sky-800\x20mb-2\x22>'+_0x2128be[_0x100514(0xa8)]+_0x100514(0x97)+new Date(_0x2128be[_0x100514(0xcd)])[_0x100514(0x91)](_0x100514(0x87),{'weekday':_0x100514(0x95),'year':_0x100514(0xc7),'month':_0x100514(0x95),'day':_0x100514(0xc7)})+_0x100514(0xb3)+_0x22e8b6+_0x100514(0xbb)+_0x1a102d+_0x100514(0x8a),_0x1a102d&&_0x2d715b[_0x100514(0xbf)]('button')['addEventListener']('click',()=>window['openModal'](_0x2128be[_0x100514(0xa8)],_0x2128be['isi'])),_0x1b0af4['appendChild'](_0x2d715b);});}catch(_0x8cadf3){console[_0x1e0165(0x9a)](_0x1e0165(0x84),_0x8cadf3),_0x1b0af4['innerHTML']=_0x1e0165(0x67);}}async function _0x58d3ee(){const _0x22a21f=_0x3985,_0x30bee0=document[_0x22a21f(0xb6)](_0x22a21f(0x6b));if(!_0x30bee0)return;try{const _0x1a8e49=await fetch(_0x22a21f(0x8d));if(!_0x1a8e49['ok'])throw new Error('Fetch\x20error!\x20status:\x20'+_0x1a8e49[_0x22a21f(0xca)]);const _0x835dd5=await _0x1a8e49[_0x22a21f(0xa6)]();_0x30bee0[_0x22a21f(0x83)]='',_0x835dd5['forEach'](_0x415d18=>{const _0x429a5a=_0x22a21f,_0x24b124=document[_0x429a5a(0x6f)]('details');_0x24b124['className']='bg-white\x20rounded-lg\x20shadow-sm\x20border\x20border-gray-200\x20overflow-hidden';let _0x7f4c87='';_0x415d18['poin']&&_0x415d18[_0x429a5a(0x73)][_0x429a5a(0xc3)]>0x0&&(_0x7f4c87='<ul\x20class=\x22list-disc\x20list-inside\x20space-y-2\x20mt-2\x22>',_0x415d18[_0x429a5a(0x73)][_0x429a5a(0x78)](_0x2338fd=>{const _0x21f822=_0x429a5a;_0x7f4c87+=_0x21f822(0xd0)+_0x2338fd['pasal']+_0x21f822(0x9d)+_0x2338fd[_0x21f822(0x71)]+'</li>';}),_0x7f4c87+=_0x429a5a(0xb9)),_0x24b124[_0x429a5a(0x83)]=_0x429a5a(0x9f)+_0x415d18['kategori']+_0x429a5a(0xd4)+_0x415d18[_0x429a5a(0x98)]+_0x429a5a(0x9e)+_0x7f4c87+'\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20',_0x30bee0[_0x429a5a(0xba)](_0x24b124);});}catch(_0x5aa6d1){console[_0x22a21f(0x9a)](_0x22a21f(0xb2),_0x5aa6d1),_0x30bee0['innerHTML']=_0x22a21f(0x75);}}function _0x14faec(){const _0x345d19=_0x3985,_0x534214=document['querySelectorAll']('video');_0x534214[_0x345d19(0x78)](_0x114fb9=>{const _0xaadcbb=_0x345d19;_0x114fb9[_0xaadcbb(0xbe)](_0xaadcbb(0xa3),_0x4e8baf=>{const _0x5c4340=_0xaadcbb;_0x534214[_0x5c4340(0x78)](_0x1f68ea=>{const _0x37e3f8=_0x5c4340;_0x1f68ea!==_0x4e8baf[_0x37e3f8(0xa2)]&&!_0x1f68ea[_0x37e3f8(0x77)]&&_0x1f68ea['pause']();});});});}_0x4334f7(),_0x3a4f57(),_0xc3003b(),_0x58ba93(),_0x2958f5(),_0x4e7a19(),_0x58d3ee(),_0x14faec();}function _0x10e3(){const _0x5bafe8=['asset','Gagal\x20memuat\x20info\x20hukum:','</p>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-gray-700\x22>','active','50%,\x2050%','getElementById','reverse','bg-white\x20p-5\x20rounded-lg\x20shadow-sm\x20border\x20border-gray-200','</ul>','appendChild','</p>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','no-repeat','parentElement','addEventListener','querySelector','komentar','</p>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','classList','length','toLocaleString','comment-list','1453452RPfdwt','numeric','style','35cecGqv','status','<p\x20class=\x22text-gray-500\x22>Saat\x20ini\x20belum\x20ada\x20berita\x20terbaru.</p>','3159128daCpQn','tanggal','reset','</p>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-xs\x20text-gray-400\x20mt-2\x22>','<li><strong>','<p\x20class=\x22text-gray-500\x22>Belum\x20ada\x20komentar.\x20Jadilah\x20yang\x20pertama!</p>','function','berita.json','</span>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20class=\x22w-6\x20h-6\x20text-gray-500\x20transition-transform\x20transform\x20arrow-down\x22\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20fill=\x22none\x22\x20viewBox=\x220\x200\x2024\x2024\x22\x20stroke=\x22currentColor\x22><path\x20stroke-linecap=\x22round\x22\x20stroke-linejoin=\x22round\x22\x20stroke-width=\x222\x22\x20d=\x22M19\x209l-7\x207-7-7\x22\x20/></svg>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</summary>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-4\x20border-t\x20border-gray-200\x22>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22mb-3\x22>','preventDefault','<p\x20class=\x22text-red-500\x22>Maaf,\x20terjadi\x20kesalahan\x20saat\x20memuat\x20berita.</p>','src','<button\x20class=\x22text-sky-600\x20font-bold\x20hover:underline\x20mt-2\x20inline-block\x22>Baca\x20Selengkapnya...</button>','div','hukum-container','42544370XDeDAx','remove','4260687bbbbgm','createElement','visitor-count','isi','backgroundCloud1','poin','tagName','<p\x20class=\x22text-red-500\x22>Maaf,\x20terjadi\x20kesalahan\x20saat\x20memuat\x20informasi\x20hukum.</p>','997443KSyumY','paused','forEach','trim','238baOPQm','modal-body','hidden-section','SOURCE','dataset','active-section','backgroundPosition','value','openModal','innerHTML','Gagal\x20memuat\x20berita:','substring','setItem','id-ID','news-container','add','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','36YfNGDN','click','hukum.json','backgroundImage','15474MEwJGe','...','toLocaleDateString','visitorCount','news-modal','\x27),\x20url(\x27','long','49556xqKSny','</h3>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-sm\x20text-gray-500\x20mb-3\x22>Dipublikasikan\x20pada:\x20','deskripsi','hidden','error','getItem','comment-form',':</strong>\x20','</p>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<summary\x20class=\x22flex\x20justify-between\x20items-center\x20p-4\x20cursor-pointer\x20hover:bg-gray-100\x22>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22font-bold\x20text-lg\x20text-gray-700\x22>','[data-asset]','Fetch\x20error!\x20status:\x20','target','play','body','textContent','json','.nav-link','judul','</p>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','article','page','balasan','querySelectorAll','top\x20-10%\x20left\x20-10%,\x20bottom\x20-10%\x20right\x20-10%','teks','backgroundSize'];_0x10e3=function(){return _0x5bafe8;};return _0x10e3();}function _0x3985(_0x1c4038,_0x2f6d20){const _0x10e31c=_0x10e3();return _0x3985=function(_0x3985c6,_0x145e7d){_0x3985c6=_0x3985c6-0x66;let _0x4fecc5=_0x10e31c[_0x3985c6];return _0x4fecc5;},_0x3985(_0x1c4038,_0x2f6d20);}document[_0x69244c(0xbe)]('DOMContentLoaded',main);
+import { siteAssets } from './assets.js';
+import { getComments, saveComment } from './database.js';
+import { initializeAI } from './ai.js';
+
+function main() {
+    function loadAllAssets() {
+        document.body.style.backgroundImage = `url('${siteAssets.backgroundCloud1}'), url('${siteAssets.backgroundCloud2}')`;
+        document.body.style.backgroundPosition = 'top -10% left -10%, bottom -10% right -10%';
+        document.body.style.backgroundRepeat = 'no-repeat';
+        document.body.style.backgroundSize = '50%, 50%';
+        const assetElements = document.querySelectorAll('[data-asset]');
+        assetElements.forEach(el => {
+            const assetKey = el.dataset.asset;
+            if (siteAssets[assetKey]) {
+                el.src = siteAssets[assetKey];
+                if (el.tagName === 'SOURCE') {
+                    const videoElement = el.parentElement;
+                    if (videoElement && typeof videoElement.load === 'function') videoElement.load();
+                }
+            }
+        });
+    }
+
+    function setupNavigation() {
+        const navButtons = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('main section');
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const pageId = button.dataset.page;
+                sections.forEach(section => { section.classList.remove('active-section'); section.classList.add('hidden-section'); });
+                const targetSection = document.getElementById(pageId);
+                if (targetSection) { targetSection.classList.remove('hidden-section'); targetSection.classList.add('active-section'); }
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
+    }
+
+    function updateVisitorCount() {
+        let count = localStorage.getItem('visitorCount') ? parseInt(localStorage.getItem('visitorCount')) + 1 : 1;
+        localStorage.setItem('visitorCount', count);
+        const visitorCountElement = document.getElementById('visitor-count');
+        if (visitorCountElement) visitorCountElement.textContent = count;
+    }
+
+    function setupCommentSection() {
+        const commentForm = document.getElementById('comment-form');
+        const commentList = document.getElementById('comment-list');
+        const komentarInput = document.getElementById('komentar');
+        function displayComments() {
+            const comments = getComments();
+            commentList.innerHTML = '';
+            if (comments.length === 0) { commentList.innerHTML = '<p class="text-gray-500">Belum ada komentar. Jadilah yang pertama!</p>'; return; }
+            comments.reverse().forEach(comment => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'bg-white p-4 rounded-lg shadow-sm border border-gray-200';
+                let userCommentHTML = `<div><p class="font-bold text-sky-700">Sobat Anak Berkata:</p><p class="text-gray-600 break-words italic">"${comment.komentar}"</p><p class="text-xs text-gray-400 mt-2">${new Date(comment.tanggal).toLocaleString('id-ID')}</p></div>`;
+                let adminReplyHTML = '';
+                if (comment.balasan) { adminReplyHTML = `<div class="mt-4 pt-4 border-t border-sky-100 ml-4"><div class="flex items-center gap-2"><p class="font-bold text-green-600">FORANGAN</p><svg class="w-5 h-5 text-sky-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div><p class="text-gray-800 break-words">${comment.balasan.teks}</p><p class="text-xs text-gray-400 mt-2">${new Date(comment.balasan.tanggal).toLocaleString('id-ID')}</p></div>`; }
+                wrapper.innerHTML = userCommentHTML + adminReplyHTML;
+                commentList.appendChild(wrapper);
+            });
+        }
+        if (commentForm) {
+            commentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (komentarInput.value.trim()) { saveComment(komentarInput.value); displayComments(); commentForm.reset(); }
+            });
+        }
+        displayComments();
+    }
+    
+    function setupNewsModal() {
+        const modal = document.getElementById('news-modal');
+        if (!modal) return;
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        window.openModal = (title, content) => { modalTitle.textContent = title; modalBody.textContent = content; modal.classList.remove('hidden'); };
+        const closeModal = () => modal.classList.add('hidden');
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    }
+
+    async function loadNews() {
+        const newsContainer = document.getElementById('news-container');
+        if (!newsContainer) return;
+        try {
+            const response = await fetch('berita.json');
+            if (!response.ok) throw new Error(`Fetch error!`);
+            const newsData = await response.json();
+            newsContainer.innerHTML = '';
+            if (newsData.length === 0) { newsContainer.innerHTML = '<p class="text-gray-500">Saat ini belum ada berita terbaru.</p>'; return; }
+            newsData.forEach(item => {
+                const article = document.createElement('article');
+                article.className = 'bg-white p-5 rounded-lg shadow-sm border border-gray-200';
+                const snippet = item.isi.length > 150 ? item.isi.substring(0, 150) + '...' : item.isi;
+                const readMoreButton = item.isi.length > 150 ? `<button class="text-sky-600 font-bold hover:underline mt-2 inline-block">Baca Selengkapnya...</button>` : '';
+                article.innerHTML = `<h3 class="text-xl font-bold text-sky-800 mb-2">${item.judul}</h3><p class="text-sm text-gray-500 mb-3">Dipublikasikan pada: ${new Date(item.tanggal).toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p><p class="text-gray-700">${snippet}</p>${readMoreButton}`;
+                if (readMoreButton) { article.querySelector('button').addEventListener('click', () => window.openModal(item.judul, item.isi)); }
+                newsContainer.appendChild(article);
+            });
+        } catch (error) { console.error("Gagal memuat berita:", error); newsContainer.innerHTML = '<p class="text-red-500">Maaf, terjadi kesalahan saat memuat berita.</p>'; }
+    }
+    
+    async function loadHukum() {
+        const hukumContainer = document.getElementById('hukum-container');
+        if (!hukumContainer) return;
+        try {
+            const response = await fetch('hukum.json');
+            if (!response.ok) throw new Error(`Fetch error!`);
+            const hukumData = await response.json();
+            hukumContainer.innerHTML = '';
+            hukumData.forEach(kategori => {
+                const detailsElement = document.createElement('details');
+                detailsElement.className = 'bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden';
+                let pointsHTML = '';
+                if (kategori.poin && kategori.poin.length > 0) {
+                    pointsHTML = '<ul class="list-disc list-inside space-y-2 mt-2">';
+                    kategori.poin.forEach(p => { pointsHTML += `<li><strong>${p.pasal}:</strong> ${p.isi}</li>`; });
+                    pointsHTML += '</ul>';
+                }
+                detailsElement.innerHTML = `<summary class="flex justify-between items-center p-4 cursor-pointer hover:bg-gray-100"><span class="font-bold text-lg text-gray-700">${kategori.kategori}</span><svg class="w-6 h-6 text-gray-500 transition-transform transform arrow-down" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></summary><div class="p-4 border-t border-gray-200"><p class="mb-3">${kategori.deskripsi}</p>${pointsHTML}</div>`;
+                hukumContainer.appendChild(detailsElement);
+            });
+        } catch (error) { console.error("Gagal memuat info hukum:", error); hukumContainer.innerHTML = '<p class="text-red-500">Maaf, terjadi kesalahan saat memuat informasi hukum.</p>'; }
+    }
+
+    function setupVideoPlayerLogic() {
+        const allVideos = document.querySelectorAll('video');
+        allVideos.forEach(video => {
+            video.addEventListener('play', (event) => {
+                allVideos.forEach(otherVideo => { if (otherVideo !== event.target && !otherVideo.paused) otherVideo.pause(); });
+            });
+        });
+    }
+
+    loadAllAssets();
+    setupNavigation();
+    updateVisitorCount();
+    setupCommentSection();
+    setupNewsModal();
+    loadNews();
+    loadHukum();
+    setupVideoPlayerLogic();
+    initializeAI();
+}
+
+document.addEventListener('DOMContentLoaded', main);
