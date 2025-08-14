@@ -48,11 +48,11 @@ function main() {
 
     /**
      * =================================================================
-     * PERBAIKAN LOGIKA PENGHITUNG PENGUNJUNG
+     * PERUBAHAN DI SINI: Angka awal diubah menjadi 15.493
      * =================================================================
      */
     function updateVisitorCount() {
-        const BASE_COUNT = 32092; // Angka awal yang Anda inginkan
+        const BASE_COUNT = 15493; // Angka awal yang Anda inginkan
         let count = localStorage.getItem('visitorCount');
 
         if (count === null) {
@@ -67,7 +67,7 @@ function main() {
         localStorage.setItem('visitorCount', count);
         const visitorCountElement = document.getElementById('visitor-count');
         if (visitorCountElement) {
-            // Format angka dengan pemisah ribuan (misal: 32.092)
+            // Format angka dengan pemisah ribuan (misal: 15.493)
             visitorCountElement.textContent = new Intl.NumberFormat('id-ID').format(count);
         }
     }
@@ -88,29 +88,11 @@ function main() {
             comments.reverse().forEach(comment => {
                 const wrapper = document.createElement('div');
                 wrapper.className = 'bg-white p-4 rounded-lg shadow-sm border border-gray-200';
-
-                let userCommentHTML = `
-                    <div>
-                        <p class="font-bold text-sky-700">Sobat Anak Berkata:</p>
-                        <p class="text-gray-600 break-words italic">"${comment.komentar}"</p>
-                        <p class="text-xs text-gray-400 mt-2">${new Date(comment.tanggal).toLocaleString('id-ID')}</p>
-                    </div>
-                `;
-
+                let userCommentHTML = `<div><p class="font-bold text-sky-700">Sobat Anak Berkata:</p><p class="text-gray-600 break-words italic">"${comment.komentar}"</p><p class="text-xs text-gray-400 mt-2">${new Date(comment.tanggal).toLocaleString('id-ID')}</p></div>`;
                 let adminReplyHTML = '';
                 if (comment.balasan) {
-                    adminReplyHTML = `
-                        <div class="mt-4 pt-4 border-t border-sky-100 ml-4">
-                            <div class="flex items-center gap-2">
-                                <p class="font-bold text-green-600">FORANGAN</p>
-                                <svg class="w-5 h-5 text-sky-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                            </div>
-                            <p class="text-gray-800 break-words">${comment.balasan.teks}</p>
-                            <p class="text-xs text-gray-400 mt-2">${new Date(comment.balasan.tanggal).toLocaleString('id-ID')}</p>
-                        </div>
-                    `;
+                    adminReplyHTML = `<div class="mt-4 pt-4 border-t border-sky-100 ml-4"><div class="flex items-center gap-2"><p class="font-bold text-green-600">FORANGAN</p><svg class="w-5 h-5 text-sky-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div><p class="text-gray-800 break-words">${comment.balasan.teks}</p><p class="text-xs text-gray-400 mt-2">${new Date(comment.balasan.tanggal).toLocaleString('id-ID')}</p></div>`;
                 }
-                
                 wrapper.innerHTML = userCommentHTML + adminReplyHTML;
                 commentList.appendChild(wrapper);
             });
@@ -126,7 +108,6 @@ function main() {
                 }
             });
         }
-        
         displayComments();
     }
     
@@ -165,12 +146,7 @@ function main() {
                 article.className = 'bg-white p-5 rounded-lg shadow-sm border border-gray-200';
                 const snippet = item.isi.length > 150 ? item.isi.substring(0, 150) + '...' : item.isi;
                 const readMoreButton = item.isi.length > 150 ? `<button class="text-sky-600 font-bold hover:underline mt-2 inline-block">Baca Selengkapnya...</button>` : '';
-                article.innerHTML = `
-                    <h3 class="text-xl font-bold text-sky-800 mb-2">${item.judul}</h3>
-                    <p class="text-sm text-gray-500 mb-3">Dipublikasikan pada: ${new Date(item.tanggal).toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                    <p class="text-gray-700">${snippet}</p>
-                    ${readMoreButton}
-                `;
+                article.innerHTML = `<h3 class="text-xl font-bold text-sky-800 mb-2">${item.judul}</h3><p class="text-sm text-gray-500 mb-3">Dipublikasikan pada: ${new Date(item.tanggal).toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p><p class="text-gray-700">${snippet}</p>${readMoreButton}`;
                 if (readMoreButton) {
                     article.querySelector('button').addEventListener('click', () => window.openModal(item.judul, item.isi));
                 }
@@ -201,16 +177,7 @@ function main() {
                     });
                     pointsHTML += '</ul>';
                 }
-                detailsElement.innerHTML = `
-                    <summary class="flex justify-between items-center p-4 cursor-pointer hover:bg-gray-100">
-                        <span class="font-bold text-lg text-gray-700">${kategori.kategori}</span>
-                        <svg class="w-6 h-6 text-gray-500 transition-transform transform arrow-down" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-                    </summary>
-                    <div class="p-4 border-t border-gray-200">
-                        <p class="mb-3">${kategori.deskripsi}</p>
-                        ${pointsHTML}
-                    </div>
-                `;
+                detailsElement.innerHTML = `<summary class="flex justify-between items-center p-4 cursor-pointer hover:bg-gray-100"><span class="font-bold text-lg text-gray-700">${kategori.kategori}</span><svg class="w-6 h-6 text-gray-500 transition-transform transform arrow-down" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></summary><div class="p-4 border-t border-gray-200"><p class="mb-3">${kategori.deskripsi}</p>${pointsHTML}</div>`;
                 hukumContainer.appendChild(detailsElement);
             });
         } catch (error) {
