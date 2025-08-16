@@ -6,7 +6,7 @@
     <title>Pesan Khusus</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body {
@@ -18,7 +18,7 @@
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen p-4 text-center">
 
-    <div class="w-full max-w-2xl mx-auto">
+    <div class="w-full max-w-3xl mx-auto">
         <!-- Header Title -->
         <h1 class="text-3xl md:text-4xl font-black text-red-600 mb-6 animate-pulse">
             #INDONESIA NEGARA ANTI KORUPSI☠️
@@ -30,29 +30,18 @@
             Browser Anda tidak mendukung elemen audio.
         </audio>
 
-        <!-- Satirical Messages -->
-        <div class="space-y-4">
-            <p class="text-2xl md:text-3xl font-bold text-white animate-bounce">
-                Indonesia Mah Negara Aman❗️❗️🥶
-            </p>
-            <p class="text-2xl md:text-3xl font-bold text-gray-300">
-                PEMERINTAHAN SUPER JUJUR☠️
-            </p>
-            <p class="text-2xl md:text-3xl font-bold text-yellow-400">
-                RAKYATNYA MAKMUR👹
-            </p>
-            <p class="text-2xl md:text-3xl font-bold text-green-400">
-                GA ANTI KRITIK PEMERINTAHANNYA
-            </p>
-            <p class="text-2xl md:text-3xl font-bold text-blue-400">
-                LAPOR? SIAP-SIAP DILAPORKAN BALIK 🚔
-            </p>
-             <p class="text-2xl md:text-3xl font-bold text-purple-400">
-                UU ITE SIAP MENJAGAMU (DARI BERPENDAPAT) 🤫
-            </p>
-            <p class="text-2xl md:text-3xl font-bold text-pink-400">
-                KEADILAN SOSIAL BAGI SELURUH RAKYAT KAYA 🤑
-            </p>
+        <!-- Sharpened Satirical Messages -->
+        <div class="space-y-4 text-2xl md:text-3xl font-bold">
+            <p class="text-white">PEMERINTAHAN SUPER JUJUR (PADA KELOMPOKNYA)☠️</p>
+            <p class="text-gray-300">RAKYATNYA MAKMUR (DALAM MIMPI)👹</p>
+            <p class="text-yellow-400">DEMOKRASI: DARI ELITE, OLEH ELITE, UNTUK KELUARGA</p>
+            <p class="text-green-400">KEADILAN SOSIAL BAGI YANG MAMPU BAYAR 🤑</p>
+            <p class="text-blue-400">KRITIK MEMBANGUN (SEL TAHANAN BARU)</p>
+            <p class="text-purple-400">UU ITE MELINDUNGI PERASAAN PEJABAT 🤫</p>
+            <p class="text-pink-400">SUBSIDI TEPAT SASARAN (KE KANTONG YANG TEPAT)</p>
+            <p class="text-red-400">SUARAMU DIDENGAR, DATAMU DICATAT</p>
+            <p class="text-indigo-400">JABATAN ADALAH WARISAN, BUKAN AMANAH</p>
+            <p class="text-orange-400">SILAKAN BERSUARA, ASAL TIDAK KEDENGARAN</p>
         </div>
 
         <!-- Copyable Quote Block -->
@@ -62,62 +51,81 @@
                 <svg class="absolute top-[-1rem] left-4 w-12 h-12 text-gray-700" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
                   <path d="M9.333 22.667h4L16 17.333V9.333H6.667v8h4L8 22.667H5.333v2.666h8v-2.666H9.333zM22.667 22.667h4L29.333 17.333V9.333H20v8h4l-2.667 5.334h-2.666v2.666h8v-2.666h-4z"></path>
                 </svg>
-                <!-- Copy Button -->
-                <button id="copyBtn" onclick="copyQuote()" title="Salin kutipan" class="absolute top-4 right-4 p-2 bg-gray-700 text-gray-400 rounded-md hover:bg-gray-600 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <svg id="copyIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                    <svg id="checkIcon" class="w-5 h-5 hidden text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                </button>
+                <!-- Buttons -->
+                <div class="absolute top-4 right-4 flex gap-2">
+                    <button id="changeBtn" onclick="changeQuote()" title="Ganti Kutipan" class="p-2 bg-gray-700 text-gray-400 rounded-md hover:bg-gray-600 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h5M20 20v-5h-5M4 4l5 5M20 20l-5-5"></path></svg>
+                    </button>
+                    <button id="copyBtn" onclick="copyQuote()" title="Salin Kutipan" class="p-2 bg-gray-700 text-gray-400 rounded-md hover:bg-gray-600 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <svg id="copyIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        <svg id="checkIcon" class="w-5 h-5 hidden text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </button>
+                </div>
                 <!-- Quote Text -->
-                <p id="quoteText" class="text-lg italic text-gray-300 pt-8">
-                    Katanya negara hukum, tapi kok hukumnya kayak pisau? Tajam ke bawah, tumpul ke atas. Mungkin pisaunya lagi cosplay jadi pejabat.
+                <p id="quoteText" class="text-lg italic text-gray-300 pt-8 transition-opacity duration-300">
+                    <!-- Quote will be inserted by JavaScript -->
                 </p>
             </div>
         </div>
     </div>
 
     <script>
+        const quotes = [
+            "Di negeri ini, ada dua jenis keadilan: satu untuk yang berkuasa, satu lagi untuk yang bersuara. Yang pertama dapat fasilitas, yang kedua mendekam di fasilitas.",
+            "Korupsi disebut 'budaya'. Kritik disebut 'makar'. Kebenaran disebut 'hoax'. Selamat datang di era di mana semua makna dibolak-balik demi kenyamanan penguasa.",
+            "Katanya kita keluarga besar. Tapi di meja makan, ada yang berpesta pora, sementara sebagian besar hanya kebagian remah-remah sambil disuruh bersyukur.",
+            "Mereka bilang kita harus optimis. Optimis melihat hutang negara menumpuk, optimis melihat hutan dibabat, dan optimis bahwa suatu saat nanti, keajaiban akan datang tanpa perlu ada yang berjuang.",
+            "Di sini, orang miskin yang mencuri singkong untuk makan bisa dipenjara bertahun-tahun. Pejabat yang mencuri miliaran uang rakyat cukup minta maaf dan dapat potongan hukuman.",
+            "Negeri ini tidak kekurangan orang pintar, hanya kekurangan orang jujur yang diberi kesempatan. Yang jujur seringnya malah dianggap aneh dan disingkirkan.",
+            "Konstitusi menjamin kebebasan berpendapat. Pasal karet menjamin kebebasan memenjarakan yang berpendapat.",
+            "Pembangunan infrastruktur itu penting, terutama membangun tembok yang tinggi agar rakyat tidak bisa melihat apa yang terjadi di dalam istana.",
+            "Mereka bekerja keras demi rakyat. Rakyat yang mana, itu yang masih jadi pertanyaan besar.",
+            "Toleransi di sini artinya: 'Anda bebas setuju dengan saya, jika tidak, Anda musuh negara'.",
+            "Katanya negara hukum, tapi kok hukumnya kayak pisau? Tajam ke bawah, tumpul ke atas. Mungkin pisaunya lagi cosplay jadi pejabat."
+        ];
+        let currentQuoteIndex = 0;
+        const quoteTextElement = document.getElementById('quoteText');
+
+        function changeQuote() {
+            currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+            quoteTextElement.style.opacity = 0;
+            setTimeout(() => {
+                quoteTextElement.innerText = quotes[currentQuoteIndex];
+                quoteTextElement.style.opacity = 1;
+            }, 300);
+        }
+
         function copyQuote() {
-            // Get the text from the paragraph
-            const quoteText = document.getElementById('quoteText').innerText;
-            
-            // Use a temporary textarea to hold the text for copying
+            const textToCopy = quoteTextElement.innerText;
             const textArea = document.createElement('textarea');
-            textArea.value = quoteText;
-            
-            // Make it invisible and append it to the body
+            textArea.value = textToCopy;
             textArea.style.position = 'fixed';
             textArea.style.left = '-9999px';
             document.body.appendChild(textArea);
-            
-            // Select and copy
             textArea.select();
             try {
                 document.execCommand('copy');
-                
-                // Visual feedback
                 const copyIcon = document.getElementById('copyIcon');
                 const checkIcon = document.getElementById('checkIcon');
                 const copyBtn = document.getElementById('copyBtn');
-
                 copyIcon.classList.add('hidden');
                 checkIcon.classList.remove('hidden');
                 copyBtn.title = 'Disalin!';
-
-                // Revert back after 2 seconds
                 setTimeout(() => {
                     copyIcon.classList.remove('hidden');
                     checkIcon.classList.add('hidden');
-                    copyBtn.title = 'Salin kutipan';
+                    copyBtn.title = 'Salin Kutipan';
                 }, 2000);
-
             } catch (err) {
                 console.error('Gagal menyalin teks: ', err);
-                copyBtn.title = 'Gagal menyalin';
             }
-            
-            // Clean up by removing the textarea
             document.body.removeChild(textArea);
         }
+
+        // Initialize with the first quote
+        document.addEventListener('DOMContentLoaded', () => {
+            quoteTextElement.innerText = quotes[currentQuoteIndex];
+        });
     </script>
 
 </body>
