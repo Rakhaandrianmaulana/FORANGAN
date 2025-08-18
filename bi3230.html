@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesan Khusus</title>
+    <title>Pesan Khusus (Gemini AI Analyst)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,9 +81,12 @@
             <source src="https://files.catbox.moe/lzrrco.mp3" type="audio/mpeg">
         </audio>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-            <div class="img-container rounded-lg overflow-hidden"><img src="https://files.catbox.moe/3qebio.png" alt="Gambar kritik sosial 1" class="w-full h-full object-cover"></div>
-            <div class="img-container rounded-lg overflow-hidden"><img src="https://files.catbox.moe/ia2qif.png" alt="Gambar kritik sosial 2" class="w-full h-full object-cover"></div>
+        <div class="flex justify-center mb-10">
+            <div class="w-full max-w-md">
+                <div class="img-container rounded-lg overflow-hidden">
+                    <img src="https://files.catbox.moe/3qebio.png" alt="Gambar kritik sosial" class="w-full h-full object-cover">
+                </div>
+            </div>
         </div>
 
         <!-- dprAI Analyst Section -->
@@ -112,7 +115,7 @@
 
     <script>
         // --- Image Assets ---
-        const userImages = ['https://files.catbox.moe/3qebio.png', 'https://files.catbox.moe/ia2qif.png'];
+        const userImages = ['https://files.catbox.moe/3qebio.png'];
         const backgroundImages = [...userImages, 'https://images.unsplash.com/photo-1591863261033-cafd5937b3a7?q=80&w=1932&auto=format&fit=crop', 'https://images.unsplash.com/photo-1569922418413-a41d31913a48?q=80&w=2070&auto=format&fit=crop'];
         const floatingImages = [...userImages, 'https://placehold.co/300x200/000000/333333?text=DIAM', 'https://placehold.co/250x250/000000/333333?text=AWAS+UU+ITE'];
 
