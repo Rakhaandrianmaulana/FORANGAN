@@ -15,173 +15,123 @@
             color: #e5e5e5;
             overflow-x: hidden; /* Prevent horizontal scrollbars */
         }
-
-        /* Fullscreen background slideshow */
         #background-slideshow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
         }
-
         #background-slideshow div {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 2s ease-in-out;
-            transform: scale(1.05); /* Slight zoom for effect */
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center;
+            opacity: 0; transition: opacity 2s ease-in-out; transform: scale(1.05);
         }
-
-        #background-slideshow div.active {
-            opacity: 0.1; /* Low opacity for background effect */
-        }
-
-        /* Container for floating images */
+        #background-slideshow div.active { opacity: 0.1; }
         #floating-images {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none; /* Allow clicks to pass through */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; pointer-events: none;
         }
-
         #floating-images img {
-            position: absolute;
-            opacity: 0.08;
-            animation: drift linear infinite;
+            position: absolute; opacity: 0.08; animation: drift linear infinite;
         }
-
-        /* Keyframes for the drifting animation */
         @keyframes drift {
-            0% {
-                transform: translateX(-150px) translateY(var(--start-y));
-            }
-            100% {
-                transform: translateX(100vw) translateY(var(--end-y));
-            }
+            0% { transform: translateX(-150px) translateY(var(--start-y)); }
+            100% { transform: translateX(100vw) translateY(var(--end-y)); }
         }
-        
-        /* Main content styling */
         .main-content {
-            position: relative;
-            z-index: 1;
-            text-shadow: 0 0 15px rgba(0,0,0,0.8);
+            position: relative; z-index: 1; text-shadow: 0 0 15px rgba(0,0,0,0.8);
         }
-        
         .img-container {
             border: 1px solid #262626;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .img-container:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+            transform: scale(1.02); box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+        }
+        #ai-output {
+            white-space: pre-wrap; /* Preserve line breaks */
+            text-align: left;
+            border-left: 2px solid #00ff00;
+            background: rgba(0, 255, 0, 0.05);
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #00ff00;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen p-4 md:p-8">
 
-    <!-- Background Slideshow Container -->
+    <!-- Background & Floating Images -->
     <div id="background-slideshow"></div>
-
-    <!-- Floating Images Container -->
     <div id="floating-images"></div>
 
     <div class="main-content w-full max-w-4xl mx-auto text-center">
         
-        <!-- Header Title -->
         <h1 class="text-3xl md:text-4xl font-black text-red-600 mb-6 animate-pulse">
             #INDONESIA NEGARA ANTI KORUPSI☠️
         </h1>
 
-        <!-- Audio Player -->
         <audio id="song" class="w-full max-w-xl mx-auto mb-10 rounded-lg" controls>
             <source src="https://files.catbox.moe/lzrrco.mp3" type="audio/mpeg">
-            Browser Anda tidak mendukung elemen audio.
         </audio>
         
-        <!-- Main Image Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-            <div class="img-container rounded-lg overflow-hidden">
-                <img src="https://files.catbox.moe/ys8kt4.png" alt="Gambar kritik sosial 1" class="w-full h-full object-cover">
-            </div>
-            <div class="img-container rounded-lg overflow-hidden">
-                <img src="https://files.catbox.moe/ia2qif.png" alt="Gambar kritik sosial 2" class="w-full h-full object-cover">
-            </div>
+            <div class="img-container rounded-lg overflow-hidden"><img src="https://files.catbox.moe/ys8kt4.png" alt="Gambar kritik sosial 1" class="w-full h-full object-cover"></div>
+            <div class="img-container rounded-lg overflow-hidden"><img src="https://files.catbox.moe/ia2qif.png" alt="Gambar kritik sosial 2" class="w-full h-full object-cover"></div>
         </div>
 
-        <!-- Curated Satirical Messages -->
-        <div class="space-y-4 text-xl md:text-2xl font-bold mb-12">
-            <p>DEMOKRASI: DARI ELITE, OLEH ELITE, UNTUK KELUARGA</p>
-            <p class="text-gray-400">KEADILAN SOSIAL BAGI YANG MAMPU BAYAR</p>
+        <!-- dprAI Analyst Section -->
+        <div class="mt-12 w-full max-w-3xl mx-auto">
+            <button id="analyzeBtn" onclick="runAnalysis()" class="text-2xl font-bold bg-gray-800 border border-gray-700 px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors mb-4 flex items-center justify-center mx-auto disabled:opacity-50">
+                <span id="btn-text">Minta Analisis dprAI 🤡🇮🇩</span>
+                <div id="loader" class="loader ml-3 hidden"></div>
+            </button>
+            <div id="ai-container" class="hidden bg-black/60 backdrop-blur-sm border border-gray-800 rounded-lg p-4 shadow-2xl">
+                <p class="text-lg font-bold text-green-400 mb-2">[dprAI]: Menganalisis data... 🧐</p>
+                <div id="ai-output" class="p-4 rounded-md text-gray-300 font-mono"></div>
+            </div>
         </div>
 
         <!-- Copyable Quote Block -->
-        <div class="w-full max-w-3xl mx-auto">
+        <div class="mt-8 w-full max-w-3xl mx-auto">
             <div id="quoteContainer" class="relative bg-black/60 backdrop-blur-sm border border-gray-800 rounded-lg p-6 text-left shadow-2xl">
-                <!-- Buttons -->
                 <div class="absolute top-4 right-4 flex gap-2">
-                    <button id="changeBtn" onclick="changeQuote()" title="Ganti Kutipan" class="p-2 bg-gray-900/50 text-gray-400 rounded-md hover:bg-gray-700 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h5M20 20v-5h-5M4 4l5 5M20 20l-5-5"></path></svg>
-                    </button>
-                    <button id="copyBtn" onclick="copyQuote()" title="Salin Kutipan" class="p-2 bg-gray-900/50 text-gray-400 rounded-md hover:bg-gray-700 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <svg id="copyIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                        <svg id="checkIcon" class="w-5 h-5 hidden text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                    </button>
+                    <button id="changeBtn" onclick="changeQuote()" title="Ganti Kutipan" class="p-2 bg-gray-900/50 text-gray-400 rounded-md hover:bg-gray-700 hover:text-white transition-colors"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h5M20 20v-5h-5M4 4l5 5M20 20l-5-5"></path></svg></button>
+                    <button id="copyBtn" onclick="copyQuote()" title="Salin Kutipan" class="p-2 bg-gray-900/50 text-gray-400 rounded-md hover:bg-gray-700 hover:text-white transition-colors"><svg id="copyIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg><svg id="checkIcon" class="w-5 h-5 hidden text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></button>
                 </div>
-                <!-- Quote Text -->
-                <p id="quoteText" class="text-lg italic text-gray-300 pt-8 transition-opacity duration-300">
-                    <!-- Quote will be inserted by JavaScript -->
-                </p>
+                <p id="quoteText" class="text-lg italic text-gray-300 pt-8 transition-opacity duration-300"></p>
             </div>
         </div>
     </div>
 
     <script>
         // --- Image Assets ---
-        const userImages = [
-            'https://files.catbox.moe/ys8kt4.png',
-            'https://files.catbox.moe/ia2qif.png'
-        ];
-        
-        const backgroundImages = [
-            ...userImages,
-            'https://images.unsplash.com/photo-1580482334995-93d0337589?q=80&w=2070&auto=format&fit=crop', // Scales of justice
-            'https://images.unsplash.com/photo-1569922418413-a41d31913a48?q=80&w=2070&auto=format&fit=crop'  // Barbed wire
-        ];
+        const userImages = ['https://files.catbox.moe/ys8kt4.png', 'https://files.catbox.moe/ia2qif.png'];
+        const backgroundImages = [...userImages, 'https://images.unsplash.com/photo-1580482334995-93d0337589?q=80&w=2070&auto=format&fit=crop', 'https://images.unsplash.com/photo-1569922418413-a41d31913a48?q=80&w=2070&auto=format&fit=crop'];
+        const floatingImages = [...userImages, 'https://placehold.co/300x200/000000/333333?text=DIAM', 'https://placehold.co/250x250/000000/333333?text=AWAS+UU+ITE'];
 
-        const floatingImages = [
-            ...userImages,
-            'https://placehold.co/300x200/000000/333333?text=DIAM',
-            'https://placehold.co/250x250/000000/333333?text=UU+ITE'
-        ];
-
-        // --- Slideshow Logic ---
+        // --- Slideshow & Floating Images Logic ---
         const slideshowContainer = document.getElementById('background-slideshow');
         let currentBgIndex = 0;
-        backgroundImages.forEach((url) => {
+        backgroundImages.forEach(url => {
             const div = document.createElement('div');
             div.style.backgroundImage = `url(${url})`;
             slideshowContainer.appendChild(div);
         });
         const bgDivs = slideshowContainer.querySelectorAll('div');
         bgDivs[0].classList.add('active');
-
         setInterval(() => {
             bgDivs[currentBgIndex].classList.remove('active');
             currentBgIndex = (currentBgIndex + 1) % backgroundImages.length;
             bgDivs[currentBgIndex].classList.add('active');
         }, 5000);
 
-        // --- Floating Images Logic ---
         const floatingContainer = document.getElementById('floating-images');
         for (let i = 0; i < 6; i++) {
             const img = document.createElement('img');
@@ -195,12 +145,76 @@
             floatingContainer.appendChild(img);
         }
 
+        // --- Gemini AI Analyst Logic ---
+        const aiOutput = document.getElementById('ai-output');
+        const aiContainer = document.getElementById('ai-container');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const loader = document.getElementById('loader');
+        const btnText = document.getElementById('btn-text');
+
+        async function runAnalysis() {
+            aiContainer.classList.remove('hidden');
+            analyzeBtn.disabled = true;
+            btnText.textContent = "Menganalisis...";
+            loader.classList.remove('hidden');
+            aiOutput.textContent = "";
+
+            const apiKey = "AIzaSyAxZqnLwUFTlU5nfpwNlkGiFHXzEWo0jb4";
+            const apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
+            
+            const prompt = `
+                Anda adalah dprAI, seorang mahasiswa Indonesia yang sangat kritis, cerdas, dan sarkastis. 
+                Berikan analisis singkat (maksimal 3 kalimat) tentang kondisi pemerintahan Indonesia saat ini. 
+                Gunakan bahasa yang tajam, langsung ke intinya, dan penuh sarkasme. 
+                Pastikan untuk menyertakan beberapa emoji pedas ini dalam respons Anda: 🇮🇩🤡🤐🧐🥵👀☠️⚠️❗️.
+                Fokus pada isu seperti korupsi, keadilan, atau demokrasi. Jangan terlalu formal.
+            `;
+
+            try {
+                const response = await fetch(`${apiUrl}?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                const analysis = result.candidates[0].content.parts[0].text;
+                
+                let i = 0;
+                const typingEffect = setInterval(() => {
+                    if (i < analysis.length) {
+                        aiOutput.textContent += analysis.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typingEffect);
+                        analyzeBtn.disabled = false;
+                        btnText.textContent = "Minta Analisis Lagi 🤡🇮🇩";
+                        loader.classList.add('hidden');
+                    }
+                }, 30);
+
+            } catch (error) {
+                console.error("Error fetching AI analysis:", error);
+                aiOutput.textContent = "⚠️ Gagal menghubungi server AI. Mungkin sinyalnya sedang diawasi. 🤐 Coba lagi nanti.";
+                analyzeBtn.disabled = false;
+                btnText.textContent = "Coba Analisis Lagi 🤡🇮🇩";
+                loader.classList.add('hidden');
+            }
+        }
+
         // --- Quote Logic ---
         const quotes = [
             "Di negeri ini, ada dua jenis keadilan: satu untuk yang berkuasa, satu lagi untuk yang bersuara. Yang pertama dapat fasilitas, yang kedua mendekam di fasilitas.",
             "Korupsi disebut 'budaya'. Kritik disebut 'makar'. Kebenaran disebut 'hoax'. Selamat datang di era di mana semua makna dibolak-balik demi kenyamanan penguasa.",
             "Katanya kita keluarga besar. Tapi di meja makan, ada yang berpesta pora, sementara sebagian besar hanya kebagian remah-remah sambil disuruh bersyukur.",
             "Konstitusi menjamin kebebasan berpendapat. Pasal karet menjamin kebebasan memenjarakan yang berpendapat.",
+            "Pembangunan infrastruktur itu penting, terutama membangun tembok yang tinggi agar rakyat tidak bisa melihat apa yang terjadi di dalam istana.",
             "Katanya negara hukum, tapi kok hukumnya kayak pisau? Tajam ke bawah, tumpul ke atas. Mungkin pisaunya lagi cosplay jadi pejabat."
         ];
         let currentQuoteIndex = 0;
@@ -209,43 +223,28 @@
         function changeQuote() {
             currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
             quoteTextElement.style.opacity = 0;
-            setTimeout(() => {
-                quoteTextElement.innerText = quotes[currentQuoteIndex];
-                quoteTextElement.style.opacity = 1;
-            }, 300);
+            setTimeout(() => { quoteTextElement.innerText = quotes[currentQuoteIndex]; quoteTextElement.style.opacity = 1; }, 300);
         }
 
         function copyQuote() {
             const textToCopy = quoteTextElement.innerText;
             const textArea = document.createElement('textarea');
             textArea.value = textToCopy;
-            textArea.style.position = 'fixed';
-            textArea.style.left = '-9999px';
+            textArea.style.position = 'fixed'; textArea.style.left = '-9999px';
             document.body.appendChild(textArea);
             textArea.select();
             try {
                 document.execCommand('copy');
                 const copyIcon = document.getElementById('copyIcon');
                 const checkIcon = document.getElementById('checkIcon');
-                const copyBtn = document.getElementById('copyBtn');
                 copyIcon.classList.add('hidden');
                 checkIcon.classList.remove('hidden');
-                copyBtn.title = 'Disalin!';
-                setTimeout(() => {
-                    copyIcon.classList.remove('hidden');
-                    checkIcon.classList.add('hidden');
-                    copyBtn.title = 'Salin Kutipan';
-                }, 2000);
-            } catch (err) {
-                console.error('Gagal menyalin teks: ', err);
-            }
+                setTimeout(() => { copyIcon.classList.remove('hidden'); checkIcon.classList.add('hidden'); }, 2000);
+            } catch (err) { console.error('Gagal menyalin: ', err); }
             document.body.removeChild(textArea);
         }
 
-        // Initialize with the first quote
-        document.addEventListener('DOMContentLoaded', () => {
-            quoteTextElement.innerText = quotes[currentQuoteIndex];
-        });
+        document.addEventListener('DOMContentLoaded', () => { quoteTextElement.innerText = quotes[currentQuoteIndex]; });
     </script>
 
 </body>
